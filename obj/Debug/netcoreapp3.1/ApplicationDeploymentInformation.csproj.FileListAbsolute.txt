@@ -1,0 +1,16 @@
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\bin\Debug\netcoreapp3.1\ApplicationDeploymentInformation.deps.json
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\bin\Debug\netcoreapp3.1\ApplicationDeploymentInformation.dll
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\bin\Debug\netcoreapp3.1\ApplicationDeploymentInformation.pdb
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\bin\Debug\netcoreapp3.1\ApplicationDeploymentInformation.xml
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\bin\Debug\netcoreapp3.1\PureManApplicationDeployment.dll
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\bin\Debug\netcoreapp3.1\PureManApplicationDeployment.pdb
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.AssemblyInfoInputs.cache
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.AssemblyInfo.cs
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.csproj.CoreCompileInputs.cache
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.csproj.CopyComplete
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.dll
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.pdb
+C:\Repos\Robot_Software_Tool\ApplicationDeploymentInformation\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.csproj.AssemblyReference.cache
+C:\Repos\ClickOnceApplicationDeployment\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.dll
+C:\Repos\ClickOnceApplicationDeployment\obj\Debug\netcoreapp3.1\ApplicationDeploymentInformation.pdb

@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApplicationDeploymentInformation</name>
+    </assembly>
+    <members>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetAssembly">
+            <inheritdoc cref="M:System.Reflection.Assembly.GetEntryAssembly" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetAssembly(System.String)">
+            <inheritdoc cref="M:System.Reflection.Assembly.Load(System.Reflection.AssemblyName)" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetAssemblyName">
+            <summary>Gets an <see cref="T:System.Reflection.AssemblyName"/> for the currently executing Assembly.</summary>
+            <inheritdoc cref="M:System.Reflection.Assembly.GetName" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetAssemblyName(System.String)">
+            <summary>Gets the <see cref="T:System.Version"/> for the Assembly at the specified path.</summary>
+            <inheritdoc cref="M:System.Reflection.Assembly.GetName" />
+            <inheritdoc cref="M:System.Reflection.Assembly.Load(System.Reflection.AssemblyName)" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetAssemblyVersion">
+            <summary>Gets the <see cref="T:System.Version"/> for the currently executing Assembly.</summary>
+            <inheritdoc cref="P:System.Reflection.AssemblyName.Version" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetAssemblyVersion(System.String)">
+            <summary>Gets the <see cref="T:System.Version"/> for the currently executing Assembly.</summary>
+            <inheritdoc cref="M:RFBApplicationDeployment.AssemblyInfo.GetAssemblyName(System.String)" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetVersionInfo">
+            <summary>Gets the <see cref="T:System.Version"/> for the currently executing Assembly.</summary>
+            <inheritdoc cref="M:System.Diagnostics.FileVersionInfo.GetVersionInfo(System.String)" />
+        </member>
+        <member name="M:RFBApplicationDeployment.AssemblyInfo.GetVersionInfo(System.String)">
+            <summary>Gets the <see cref="T:System.Version"/> for the currently File at the specified path</summary>
+            <inheritdoc cref="M:System.Diagnostics.FileVersionInfo.GetVersionInfo(System.String)" />
+        </member>
+        <member name="T:RFBApplicationDeployment.ClickOnceApplicationDeployment">
+            <summary>
+            Returns information about the current Executing Assembly
+            <br/> DLL meant to bridge the ClickOnce gap from .NetFramework to .Net5 to simplify code base for multi-target callers
+            <br/> .NetFramework compatibility provided by: System.Deployment.dll
+            <br/> .Net compatibility provided by: <see href="https://github.com/derskythe/WpfSettings"/>
+            </summary>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.EntryApplication">
+            <summary>
+            Static object that contains provides information about the to the entry assembly.
+            </summary>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.#ctor">
+            <summary>
+            Get information about the current application.
+            </summary>
+            <remarks>
+            FilePath provided by <see cref="M:System.Reflection.Assembly.GetEntryAssembly"/>.Location
+            </remarks>
+            <inheritdoc cref="M:System.Reflection.Assembly.LoadFile(System.String)" path="/exception"/>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.#ctor(System.String)">
+            <summary>
+            Get information about the application at the specified <paramref name="filePath"/>
+            </summary>
+            <param name="filePath">Path to the executable</param>
+            <inheritdoc cref="M:System.Reflection.Assembly.LoadFile(System.String)" path="/exception"/>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.Refresh">
+            <summary>
+            Refresh the Data About this application
+            </summary>
+            <inheritdoc cref="M:System.Reflection.Assembly.LoadFile(System.String)" path="/exception"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.FilePath">
+            <summary>
+            Path to the exectuable / manifest.
+            </summary>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.ProductName">
+            <inheritdoc cref="P:System.Diagnostics.FileVersionInfo.ProductName"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.CompanyName">
+            <inheritdoc cref="P:System.Diagnostics.FileVersionInfo.CompanyName"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.Comments">
+            <inheritdoc cref="P:System.Diagnostics.FileVersionInfo.Comments"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsNetworkDeployed">
+            <summary>
+            Gets a value indicating whether this instance is network deployment.
+            </summary>
+            <value><c>true</c> if this instance is network deployment; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsFirstRun">
+            <inheritdoc cref="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsFirstRunValue"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.CurrentVersion">
+            <inheritdoc cref="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.CurrentVersionValue"/>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.GetUpdatedVersionInfo(System.Nullable{System.Threading.CancellationToken})">
+            <inheritdoc cref="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.GetUpdatedVersionInfoMethod(System.Nullable{System.Threading.CancellationToken})"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.DataDirectory">
+            <inheritdoc cref="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.DataDirectoryValue"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.TimeOfLastUpdateCheck">
+            <inheritdoc cref="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.TimeOfLastUpdateCheckValue"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsUpdateAvailable(System.Threading.CancellationToken)" -->
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.UpdateAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.UpdateAsyncMethod(System.Nullable{System.Threading.CancellationToken})"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsNetworkDeployedValue">
+            <inheritdoc cref="P:PureManApplicationDeployment.PureManClickOnce.IsNetworkDeployment"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsFirstRunValue">
+            <summary>
+            Library currently does not provide support for this functionality. 
+            </summary>
+            <returns>False</returns>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.CurrentVersionValue">
+            <inheritdoc cref="M:PureManApplicationDeployment.PureManClickOnce.CurrentVersion"/>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.GetUpdatedVersionInfoMethod(System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+            Check the network for the latest version -- Requires network access!
+            </summary>
+            <inheritdoc cref="M:PureManApplicationDeployment.PureManClickOnce.ServerVersion(System.Nullable{System.Threading.CancellationToken})"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.DataDirectoryValue">
+            <inheritdoc cref="P:PureManApplicationDeployment.PureManClickOnce.DataDir"/>
+        </member>
+        <member name="P:RFBApplicationDeployment.ClickOnceApplicationDeployment.TimeOfLastUpdateCheckValue">
+            <summary>
+            Last time the application had checked for an update - Resets to DateTime.Now when the application first starts up, as no way to store this information currently.
+            </summary>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.IsUpdateAvailableMethod(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:PureManApplicationDeployment.PureManClickOnce.UpdateAvailable(System.Nullable{System.Threading.CancellationToken})"/>
+        </member>
+        <member name="M:RFBApplicationDeployment.ClickOnceApplicationDeployment.UpdateAsyncMethod(System.Nullable{System.Threading.CancellationToken})">
+            <inheritdoc cref="M:PureManApplicationDeployment.PureManClickOnce.Update(System.Nullable{System.Threading.CancellationToken})"/>
+        </member>
+        <member name="M:RFBApplicationDeployment.Extensions.RunCancellableTask(System.Action,System.Action,System.Threading.Tasks.TaskCompletionSource{System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="StartAction"></param>
+            <param name="CancelAction"></param>
+            <param name="tc"><see cref="T:System.Threading.Tasks.TaskCompletionSource`1"/> object set within the event handler </param>
+            <param name="token">Cancellation Token</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
