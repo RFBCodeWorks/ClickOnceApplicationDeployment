@@ -69,9 +69,9 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     <!--https://dev.to/yerac/include-both-nuget-package-references-and-project-reference-dll-using-dotnet-pack-2d8p-->
     <PropertyGroup>
         <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-        <AssemblyVersion>1.0.0.3</AssemblyVersion>
-        <FileVersion>1.0.0.3</FileVersion>
-        <Version>1.0.3</Version>
+        <AssemblyVersion>1.0.0.4</AssemblyVersion>
+        <FileVersion>1.0.0.4</FileVersion>
+        <Version>1.0.4</Version>
     </PropertyGroup>
     <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
         <ItemGroup>

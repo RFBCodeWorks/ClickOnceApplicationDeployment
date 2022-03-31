@@ -39,6 +39,8 @@ namespace RFBApplicationDeployment
         /// <inheritdoc cref="ApplicationDeployment.DataDirectory"/>
         private string DataDirectoryValue => IsNetworkDeployed ? CurrentDeployment.DataDirectory : AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
+        private string UpdateLocationValue => CurrentDeployment.UpdateLocation.ToString();
+
         #endregion
 
         #region Methods         
@@ -66,10 +68,6 @@ namespace RFBApplicationDeployment
             }
         }
 
-        /// <returns>TRUE if the update was completed, otherwise false.</returns>
-        /// <param name="token"><see cref="CancellationToken"/> used to cancel the update process</param>
-        /// <inheritdoc cref="ApplicationDeployment.UpdateAsync"/>
-        /// <exception cref="OperationCanceledException"/> - Occurs if Token.IsCancellationRequested
         private async Task<bool> UpdateAsyncMethod(CancellationToken? token = default)
         {
             if (!IsNetworkDeployed)

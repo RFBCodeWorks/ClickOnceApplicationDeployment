@@ -37,12 +37,10 @@ namespace RFBApplicationDeployment
         /// <inheritdoc cref="PureManClickOnce.DataDir"/>
         private string DataDirectoryValue => IsNetworkDeployed ? CurrentDeployment_DotNet.DataDir : AssemblyInfo.GetAssembly().Location;
 
-        /// <summary>
-        /// Last time the application had checked for an update - Resets to DateTime.Now when the application first starts up, as no way to store this information currently.
-        /// <br/> This value is updated when <see cref="CheckForDetailedUpdateAsync(CancellationToken?)"/> runs successfully.
-        /// </summary>
+        
         private DateTime TimeOfLastUpdateCheckValue => CurrentDeployment_DotNet.TimeOfLastUpdateCheckValue;
 
+        private string UpdateLocationValue => CurrentDeployment_DotNet.UpdateLocation;
 #endregion
 
 #region Methods 

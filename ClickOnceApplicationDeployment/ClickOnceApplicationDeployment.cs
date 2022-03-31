@@ -108,22 +108,36 @@ namespace RFBApplicationDeployment
         
 #endregion
 
-#region < Public Properties >
+        #region < Public Properties >
 
         /// <summary>
         /// Path to the exectuable / manifest.
         /// </summary>
         public string ExecutablePath { get; }
 
-        /// <remarks>value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/> </remarks>
+        /// <summary>
+        /// Gets the Web site or file share from which this application updates itself.
+        /// </summary>
+        /// <returns>
+        /// The update path, expressed as an HTTP, HTTPS, or file URL; or as a Windows network file path (UNC) <para/>
+        /// For .Net applications, this is the publishPath passed into the constructor.
+        /// </returns>
+        /// <para/>Value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/>
+        /// </summary>
         /// <inheritdoc cref="FileVersionInfo.ProductName"/>
         public virtual string ProductName => AssemblyVersionInfo.ProductName;
 
-        /// <remarks>value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/> </remarks>
+        /// <summary>
+        /// <inheritdoc cref="FileVersionInfo.CompanyName" path="/summary"/>
+        /// <para/>Value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/>
+        /// </summary>
         /// <inheritdoc cref="FileVersionInfo.CompanyName"/>
         public virtual string CompanyName => AssemblyVersionInfo.CompanyName;
 
-        /// <remarks>value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/> </remarks>
+        /// <summary>
+        /// <inheritdoc cref="FileVersionInfo.Comments" path="/summary"/>
+        /// <para/>Value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/>
+        /// </summary>
         /// <inheritdoc cref="FileVersionInfo.Comments"/>
         public virtual string Comments => AssemblyVersionInfo.Comments;
 
@@ -133,16 +147,38 @@ namespace RFBApplicationDeployment
         /// <value><c>true</c> if this instance is network deployment; otherwise, <c>false</c>.</value>
         public bool IsNetworkDeployed => IsNetworkDeployedValue;
 
-        /// <inheritdoc cref="IsFirstRunValue"/>
-        public virtual bool IsFirstRun => IsFirstRunValue;
+        /// <summary>
+        /// Gets a value indicating whether this is the first time this applicaiton has run on the client computer.
+        /// </summary>
+        /// <returns>
+        /// true if this version of the application has never run on the client computer before; otherwise false;
+        /// </returns>
+        /// <remarks>
+        /// - .Net3.1 and .Net5 currently do not provide a way to test for this, so this will always return false.
+        /// <br/> - .NetFramework will report this value properly via System.Deployment.dll
+        /// </remarks>
+        public virtual bool IsFirstRun => IsFirstRunValue; //ToDo: Try to find a way to get this working on .Net5
 
-        /// <inheritdoc cref="DataDirectoryValue"/>
+        /// <summary>
+        /// Gets the path to the ClickOnce data directory
+        /// </summary>
+        /// <returns>
+        /// A string containing the path to the application's data directory on the local disk.
+        /// </returns>
         public virtual string DataDirectory => DataDirectoryValue;
 
-        /// <inheritdoc cref="TimeOfLastUpdateCheckValue"/>
+        /// <summary>
+        /// Last time the application has checked for an update. 
+        /// </summary>
+        /// <remarks>
+        /// - Resets to DateTime.Now when the application first starts up, as no way to store this information currently.
+        /// <br/> - This value is updated when <see cref="CheckForDetailedUpdateAsync(CancellationToken?)"/> runs successfully.
+        /// </remarks>
         public virtual DateTime TimeOfLastUpdateCheck => TimeOfLastUpdateCheckValue;
 
-        /// <inheritdoc cref="CurrentVersionValue"/>
+        /// <summary>
+        /// Gets the <see cref="Version"/> of the current running instance of the application
+        /// </summary>
         public virtual Version CurrentVersion => CurrentVersionValue;
 
         #endregion
@@ -152,18 +188,29 @@ namespace RFBApplicationDeployment
         /// <summary>
         /// Asynchronously check if an update is available. 
         /// </summary>
-        /// <returns><see cref="Task"/>&lt;<see cref="UpdateCheckResults"/>&gt;</returns>
+        /// <returns>
+        /// <see cref="Task"/>&lt;<see cref="UpdateCheckResults"/>&gt;
+        /// which contains the results update check, as well as if any errors that occurred when attempting to reach the update server.
+        /// </returns>
         public virtual Task<UpdateCheckResults> CheckForDetailedUpdateAsync(CancellationToken? token = default) => CheckForDetailedUpdateAsyncMethod(token);
 
-        /// <inheritdoc cref="UpdateAsyncMethod"/>
+
+        /// <summary>
+        /// Starts an asynchronous download and isntallation of the latest version of this application.
+        /// </summary>
+        /// <returns>TRUE if the update was completed, otherwise false.</returns>
+        /// <param name="token"><see cref="CancellationToken"/> used to cancel the update process</param>
+        /// <exception cref="OperationCanceledException"/> - Occurs if Token.IsCancellationRequested
         public virtual Task<bool> UpdateAsync(CancellationToken? token = default) => UpdateAsyncMethod(token);
 
 
+        /// <summary>
+        /// Checks the <see cref="UpdateLocation"/> to determine whether a new update is available.
+        /// </summary>
         /// <returns>
-        /// <see cref = "Task" />&lt;<see cref="bool"/>&gt; <br/>
-        /// returns FALSE when <see cref="IsNetworkDeployed"/> == false.
+        /// <see cref = "Task" />&lt;<see cref="bool"/>&gt;whose value is TRUE if an update is available, otherwise false.
         /// </returns>
-        /// <inheritdoc cref="CheckUpdateAvailableAsyncMethod"/>
+        /// <exception cref="OperationCanceledException"/>
         public virtual Task<bool> CheckUpdateAvailableAsync(CancellationToken? token = default)
         {
             if (!IsNetworkDeployed)
