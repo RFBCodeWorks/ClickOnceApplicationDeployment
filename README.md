@@ -11,7 +11,7 @@ Available as a NuGet package here:
 https://www.nuget.org/packages/ClickOnceApplicationDeploymentWrapper/
 
 # Usage
-NameSpace: RFBApplicationDeployment
+NameSpace: RFBApplicationDeployment  
 RFBApplicationDeployment.ClickOnceApplicationDeployment.EntryApplication
 - This static object will act as your main interaction point. 
 - If needed, other objects can be constructed that have different publish paths.
