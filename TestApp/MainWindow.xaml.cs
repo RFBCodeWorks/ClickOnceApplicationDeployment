@@ -17,7 +17,7 @@ namespace WpfSettings
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
-        private ClickOnceApplicationDeployment EntryApp => ClickOnceApplicationDeployment.EntryApplication;
+        private static ClickOnceApplicationDeployment EntryApp => ClickOnceApplicationDeployment.EntryApplication;
         private ClickOnceApplicationDeployment _ClickOnce;
 
         public MainWindow()

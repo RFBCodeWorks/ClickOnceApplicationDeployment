@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <TargetFrameworks>netcoreapp3.1;net5.0-windows;net472;net48;</TargetFrameworks>
-        <PlatformTargets>x86;x64</PlatformTargets>
         <RootNamespace>RFBApplicationDeployment</RootNamespace>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression></PackageLicenseExpression>
@@ -23,6 +22,7 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
         <PackageTags>ClickOnce System.Deployment System.Deployment.ApplicationDeployment</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageProjectUrl>https://github.com/RFBProducts/ClickOnceApplicationDeployment</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <DocumentationFile>bin\Debug\ApplicationDeploymentInformation.xml</DocumentationFile>
@@ -44,6 +44,12 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     <!-- Net5+ Compatibility -->
     <ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
         <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="..\LICENSE">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
     </ItemGroup>
     
 </Project>

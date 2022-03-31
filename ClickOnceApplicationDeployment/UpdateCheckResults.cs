@@ -5,7 +5,7 @@ using System.Text;
 namespace RFBApplicationDeployment
 {
     /// <summary>
-    /// Represents the results of an UpdateCheck that was performed by <see cref="ClickOnceApplicationDeployment.CheckForUpdateAsync(System.Threading.CancellationToken?)"/>
+    /// Represents the results of an UpdateCheck that was performed by <see cref="ClickOnceApplicationDeployment.CheckForDetailedUpdateAsync(System.Threading.CancellationToken?)"/>
     /// </summary>
     public class UpdateCheckResults
     {
