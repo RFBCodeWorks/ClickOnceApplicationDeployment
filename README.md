@@ -7,7 +7,7 @@ Provider has been designed to mimick System.Deployment.ApplicationDeployment cla
 .Net compatibility provided by: https://github.com/derskythe/WpfSettings  
 .NetFramework utilizes system.deployment.dll
 
-Targets: Net472, Net48, .NetCoreApp3.1, and .Net5 
+Targets: Net472, Net48, .NetCoreApp3.1, and .Net5-windows 
 
 Available as a NuGet package here:
 https://www.nuget.org/packages/ClickOnceApplicationDeploymentWrapper/
