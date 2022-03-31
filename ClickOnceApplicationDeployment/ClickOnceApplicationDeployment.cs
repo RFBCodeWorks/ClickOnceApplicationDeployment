@@ -29,10 +29,10 @@ namespace RFBApplicationDeployment
     public partial class ClickOnceApplicationDeployment
     {
         /// <summary>
-        /// Static object that contains provides information about the to the entry assembly.
+        /// Static object that contains provides information about the entry assembly.
         /// </summary>
         /// <remarks>
-        /// For .Net libraries or applications, this should be overridden using <see cref="SetupEntryApplication(string)"/>
+        /// For .Net targets, the Publish-Path must be set using <see cref="SetupEntryApplication(string)"/>
         /// </remarks>
         public static ClickOnceApplicationDeployment EntryApplication { get; private set; } = new ClickOnceApplicationDeployment();
 
