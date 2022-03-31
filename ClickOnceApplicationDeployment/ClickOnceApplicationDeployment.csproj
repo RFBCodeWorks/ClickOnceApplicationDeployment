@@ -14,7 +14,6 @@
 
 Provider has been designed to mimick System.Deployment.ApplicationDeployment class. Depending on the target framework, different methods will be used by the dll to provide the core ClickOnce functionality.
 
-
 NameSpace: RFBApplicationDeployment
 Object : ClickOnceApplicationDeployment.EntryApplication 
 
@@ -29,17 +28,21 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
         <PackageProjectUrl>https://github.com/RFBProducts/ClickOnceApplicationDeployment</PackageProjectUrl>
         <RepositoryUrl>https://github.com/RFBProducts/ClickOnceApplicationDeployment</RepositoryUrl>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     </PropertyGroup>
     <!-- Build Specs -->
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-        <DocumentationFile>bin\Debug\ApplicationDeploymentInformation.xml</DocumentationFile>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
-        <DocumentationFile>bin\Release\CustomControls_Interfaces.xml</DocumentationFile>
         <Optimize>true</Optimize>
         <DefineConstants>TRACE</DefineConstants>
+    </PropertyGroup>
+    <!--Documentation Files -->
+    <PropertyGroup Condition="'$(TargetFramework)'=='net472'  Or '$(TargetFramework)' == 'net48'">
+        <DocumentationFile>bin\Release\DocFile_Framework\ClickOnceApplicationDeployment.xml</DocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)'=='net5.0-windows'">
+        <DocumentationFile>bin\Release\DocFile_DotNet\ClickOnceApplicationDeployment.xml</DocumentationFile>
     </PropertyGroup>
     <!-- NetFramework Compatibility -->
     <ItemGroup Condition="'$(TargetFramework)'=='net472'  Or '$(TargetFramework)' == 'net48'">
@@ -66,9 +69,9 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     <!--https://dev.to/yerac/include-both-nuget-package-references-and-project-reference-dll-using-dotnet-pack-2d8p-->
     <PropertyGroup>
         <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-        <AssemblyVersion>1.0.0.1</AssemblyVersion>
-        <FileVersion>1.0.0.1</FileVersion>
-        <Version>1.0.1</Version>
+        <AssemblyVersion>1.0.0.3</AssemblyVersion>
+        <FileVersion>1.0.0.3</FileVersion>
+        <Version>1.0.3</Version>
     </PropertyGroup>
     <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
         <ItemGroup>
