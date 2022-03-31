@@ -122,6 +122,10 @@ namespace RFBApplicationDeployment
         /// The update path, expressed as an HTTP, HTTPS, or file URL; or as a Windows network file path (UNC) <para/>
         /// For .Net applications, this is the publishPath passed into the constructor.
         /// </returns>
+        public string UpdateLocation => UpdateLocationValue;
+
+        /// <summary>
+        /// <inheritdoc cref="FileVersionInfo.ProductName" path="/summary"/>
         /// <para/>Value retrieved via: <see cref="FileVersionInfo.GetVersionInfo"/>
         /// </summary>
         /// <inheritdoc cref="FileVersionInfo.ProductName"/>
