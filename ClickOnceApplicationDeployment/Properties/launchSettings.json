@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ApplicationDeploymentInformation": {
+      "commandName": "Executable",
+      "nativeDebugging": false
+    }
+  }
+}

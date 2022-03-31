@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;net5.0-windows;net472;net48;</TargetFrameworks>
+        <PlatformTargets>x86;x64</PlatformTargets>
+        <RootNamespace>RFBApplicationDeployment</RootNamespace>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression></PackageLicenseExpression>
+        <PackageId>ClickOnceApplicationDeploymentWrapper</PackageId>
+        <Authors>RFBomb</Authors>
+        <Company>RFBomb Productions</Company>
+        <Product>ClickOnceApplicationDeployment</Product>
+        <Description>DLL designed to ease transition of ClickOnce applications from .NetFramwork to .Net by providing a unified library to both .NetFramework and .Net5 projects that utilize ClickOnce.
+
+Provider has been designed to mimick System.Deployment.ApplicationDeployment class. Depending on the target framework, different methods will be used by the dll to provide the core ClickOnce functionality.
+
+.Net compatibility provided by: https://github.com/derskythe/WpfSettings
+.NetFramework utilizes system.deployment.dll
+
+Targets: Net472, Net48, .NetCoreApp3.1, and .Net5 
+</Description>
+        <Copyright>2022</Copyright>
+        <PackageTags>ClickOnce System.Deployment System.Deployment.ApplicationDeployment</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/RFBProducts/ClickOnceApplicationDeployment</PackageProjectUrl>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\ApplicationDeploymentInformation.xml</DocumentationFile>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DocumentationFile>bin\Release\CustomControls_Interfaces.xml</DocumentationFile>
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE</DefineConstants>
+    </PropertyGroup>
+    <!-- NetFramework Compatibility -->
+    <ItemGroup Condition="'$(TargetFramework)'=='net472'  Or '$(TargetFramework)' == 'net48'">
+        <Reference Include="System.Deployment" />
+    </ItemGroup>
+    <!-- NetCoreApp3.1 Compatibility -->
+    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+        <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj" />
+    </ItemGroup>
+    <!-- Net5+ Compatibility -->
+    <ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
+        <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj" />
+    </ItemGroup>
+    
+</Project>
