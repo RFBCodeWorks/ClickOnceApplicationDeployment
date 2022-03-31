@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFrameworks>netcoreapp3.1;net5.0-windows;net472;net48;</TargetFrameworks>
-        <Platforms>x64</Platforms>
         <RootNamespace>RFBApplicationDeployment</RootNamespace>
+        <TargetPlatforms>x86;x64</TargetPlatforms>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression></PackageLicenseExpression>
         <PackageId>ClickOnceApplicationDeploymentWrapper</PackageId>
@@ -23,7 +23,9 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
         <PackageTags>ClickOnce System.Deployment System.Deployment.ApplicationDeployment</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageProjectUrl>https://github.com/RFBProducts/ClickOnceApplicationDeployment</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/RFBProducts/ClickOnceApplicationDeployment</RepositoryUrl>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     </PropertyGroup>
     <!-- Build Specs -->
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -37,15 +39,17 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     </PropertyGroup>
     <!-- NetFramework Compatibility -->
     <ItemGroup Condition="'$(TargetFramework)'=='net472'  Or '$(TargetFramework)' == 'net48'">
-        <Reference Include="System.Deployment" />
+        <Reference Include="System.Deployment">
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <IncludeAssets>System.Deployment.dll</IncludeAssets>
+        </Reference>
     </ItemGroup>
-    <!-- NetCoreApp3.1 Compatibility -->
-    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-        <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj" />
-    </ItemGroup>
-    <!-- Net5+ Compatibility -->
-    <ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
-        <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj" />
+    <!-- NetCoreApp3.1 & Net5 Compatibility -->
+    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)'=='net5.0-windows'">
+        <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj">
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <IncludeAssets>PureManApplicationDeployment.dll</IncludeAssets>
+        </ProjectReference>
     </ItemGroup>
     <!-- NugetPackage Additions -->
     <ItemGroup>
@@ -54,5 +58,14 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
         <PackagePath></PackagePath>
       </None>
     </ItemGroup>
-    
+    <!-- Workaround to build dependencies into the nuget package -->
+    <!--https://dev.to/yerac/include-both-nuget-package-references-and-project-reference-dll-using-dotnet-pack-2d8p-->
+    <PropertyGroup>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    </PropertyGroup>
+    <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+        <ItemGroup>
+            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+        </ItemGroup>
+    </Target>
 </Project>
