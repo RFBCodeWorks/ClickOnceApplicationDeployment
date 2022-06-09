@@ -1,0 +1,6 @@
+﻿// shell32
+IShellItem
+KNOWN_FOLDER_FLAG 
+SHGetKnownFolderItem
+SHGetKnownFolderPath
+SHSetKnownFolderPath
