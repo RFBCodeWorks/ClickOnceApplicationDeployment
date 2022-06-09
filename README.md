@@ -4,7 +4,7 @@ DLL designed to ease transition of ClickOnce applications from .NetFramwork to .
 Provider has been designed to mimick System.Deployment.ApplicationDeployment class. Depending on the target framework, different methods will be used by the dll to provide the core ClickOnce functionality.
 Targets: Net472, Net48, .NetCoreApp3.1, and .Net5-windows 
 
-.Net compatibility provided by: https://github.com/derskythe/WpfSettings  
+.Net compatibility provided by: https://github.com/derskythe/WpfSettings  (Relies on SyRoot.KnownFolders, included in the Nuget Package.)
 .NetFramework utilizes system.deployment.dll
 
 Available as a NuGet package here:

@@ -4,7 +4,7 @@
         <TargetFrameworks>netcoreapp3.1;net5.0-windows;net472;net48;</TargetFrameworks>
         <RootNamespace>RFBApplicationDeployment</RootNamespace>
         <TargetPlatforms>x86;x64</TargetPlatforms>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression></PackageLicenseExpression>
         <PackageId>ClickOnceApplicationDeploymentWrapper</PackageId>
         <Authors>RFBomb</Authors>
@@ -53,13 +53,13 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     </ItemGroup>
     <!-- NetCoreApp3.1 & Net5 Compatibility -->
     <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)'=='net5.0-windows'">
-        <ProjectReference Include="..\..\WpfSettings\PureManApplicationDevelopment\PureManApplicationDeployment.csproj">
+        <ProjectReference Include="..\PureManApplicationDevelopment\PureManApplicationDevelopment\PureManApplicationDeployment.csproj">
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-            <IncludeAssets>PureManApplicationDeployment.dll</IncludeAssets>
+            <IncludeAssets>PureManApplicationDeployment.dll;PureManApplicationDeployment.xml</IncludeAssets>
         </ProjectReference>
         <ProjectReference Include="..\SyRoot.KnownFolders\src\Syroot.KnownFolders\Syroot.KnownFolders.csproj">
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-            <IncludeAssets>Syroot.KnownFolders.dll</IncludeAssets>
+            <IncludeAssets>Syroot.KnownFolders.dll;Syroot.KnownFolders.xml</IncludeAssets>
         </ProjectReference>
     </ItemGroup>
     <!-- NugetPackage Additions -->
@@ -68,14 +68,15 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>
+      <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
     <!-- Workaround to build dependencies into the nuget package -->
     <!--https://dev.to/yerac/include-both-nuget-package-references-and-project-reference-dll-using-dotnet-pack-2d8p-->
     <PropertyGroup>
         <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-        <AssemblyVersion>1.0.0.5</AssemblyVersion>
-        <FileVersion>1.0.0.5</FileVersion>
-        <Version>1.0.5</Version>
+        <AssemblyVersion>1.0.0.6</AssemblyVersion>
+        <FileVersion>1.0.0.6</FileVersion>
+        <Version>1.0.6</Version>
     </PropertyGroup>
     <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
         <ItemGroup>

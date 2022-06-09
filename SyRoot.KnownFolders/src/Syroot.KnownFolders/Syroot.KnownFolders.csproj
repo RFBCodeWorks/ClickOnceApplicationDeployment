@@ -7,7 +7,7 @@
 		<PackageId>Syroot.Windows.IO.KnownFolders</PackageId>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://gitlab.com/Syroot/KnownFolders</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
 		<PackageReleaseNotes>Add KnownFolder.DisplayName property to retrieve user friendly folder names.</PackageReleaseNotes>
 		<PackageTags>windows;shell;special folder;folder;folders</PackageTags>
 		<RepositoryType>git</RepositoryType>
@@ -17,7 +17,7 @@
 	<!-- Content -->
 	<ItemGroup>
 		<None Include="icon.png" Pack="true" PackagePath="\" />
-		<None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\" />
+		<!--<None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\" />-->
 	</ItemGroup>
 
 	<!-- Output -->
@@ -29,6 +29,10 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>bin\Release\Syroot.KnownFolders.xml</DocumentationFile>
+	  <OutputPath>bin\Release\</OutputPath>
+	</PropertyGroup>
 
 	<!-- Dependencies -->
 	<ItemGroup>
@@ -36,7 +40,7 @@
 	</ItemGroup>
 	<!-- Development Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitLab" Version="1.1.1" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.SourceLink.GitLab" Version="1.1.1" PrivateAssets="All" />
 		<PackageReference Include="Microsoft.Windows.CsWin32" Version="0.1.635-beta">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

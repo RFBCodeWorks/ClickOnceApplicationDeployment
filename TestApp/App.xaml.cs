@@ -17,6 +17,16 @@ namespace WpfSettings
         // ReSharper restore InconsistentNaming
         // ReSharper restore FieldCanBeMadeReadOnly.Local
 
+        protected override void OnStartup(StartupEventArgs e)
+        {
+
+            RFBApplicationDeployment.ClickOnceApplicationDeployment.SetupEntryApplication(@"C:\TestPublishPath\");
+            base.OnStartup(e);
+            this.MainWindow = new WpfSettings.MainWindow();
+            this.MainWindow.Show();
+
+        }
+
         public App()
         {
             var logger = NLog.LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
