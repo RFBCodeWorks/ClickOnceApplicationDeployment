@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <TargetPlatforms>x86;x64</TargetPlatforms>
+      <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\PureManApplicationDeployment.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SyRoot.KnownFolders\src\Syroot.KnownFolders\Syroot.KnownFolders.csproj" />
+  </ItemGroup>
+    <!-- Dependencies -->
+    <!-- Development Dependencies -->
+</Project>
