@@ -57,6 +57,10 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
             <IncludeAssets>PureManApplicationDeployment.dll</IncludeAssets>
         </ProjectReference>
+        <ProjectReference Include="..\SyRoot.KnownFolders\src\Syroot.KnownFolders\Syroot.KnownFolders.csproj">
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <IncludeAssets>Syroot.KnownFolders.dll</IncludeAssets>
+        </ProjectReference>
     </ItemGroup>
     <!-- NugetPackage Additions -->
     <ItemGroup>
@@ -69,9 +73,9 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     <!--https://dev.to/yerac/include-both-nuget-package-references-and-project-reference-dll-using-dotnet-pack-2d8p-->
     <PropertyGroup>
         <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-        <AssemblyVersion>1.0.0.4</AssemblyVersion>
-        <FileVersion>1.0.0.4</FileVersion>
-        <Version>1.0.4</Version>
+        <AssemblyVersion>1.0.0.5</AssemblyVersion>
+        <FileVersion>1.0.0.5</FileVersion>
+        <Version>1.0.5</Version>
     </PropertyGroup>
     <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
         <ItemGroup>
