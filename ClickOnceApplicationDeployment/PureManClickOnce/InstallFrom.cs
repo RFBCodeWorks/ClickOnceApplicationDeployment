@@ -1,4 +1,5 @@
-﻿// ***********************************************************************
+﻿#if !NETFRAMEWORK
+// ***********************************************************************
 // Assembly         : PureManApplicationDeployment
 // Author           : p.g.parpura
 // Created          : 01-25-2021
@@ -32,3 +33,4 @@ namespace PureManApplicationDeployment
         Web
     }
 }
+#endif

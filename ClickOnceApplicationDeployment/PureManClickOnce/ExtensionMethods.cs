@@ -1,4 +1,5 @@
-﻿// ***********************************************************************
+﻿#if !NETFRAMEWORK
+// ***********************************************************************
 // Assembly         : PureManApplicationDeployment
 // Author           : RFBomb
 // Created          : 03-30-2022
@@ -58,3 +59,4 @@ namespace PureManApplicationDeployment
 
     }
 }
+#endif

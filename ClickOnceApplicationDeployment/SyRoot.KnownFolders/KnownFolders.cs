@@ -1,9 +1,11 @@
-﻿namespace Syroot.Windows.IO
+﻿#if !NETFRAMEWORK
+
+namespace Syroot.Windows.IO
 {
     /// <summary>
     /// A collection of properties to retrieve specific file system paths for the current user.
     /// </summary>
-    public static class KnownFolders
+    internal static class KnownFolders
     {
         // ---- PROPERTIES ---------------------------------------------------------------------------------------------
 
@@ -654,3 +656,5 @@
         public static KnownFolder Windows => new(KnownFolderType.Windows);
     }
 }
+
+#endif

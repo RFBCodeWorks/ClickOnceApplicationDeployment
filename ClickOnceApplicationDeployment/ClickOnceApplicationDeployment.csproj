@@ -7,6 +7,7 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression></PackageLicenseExpression>
         <PackageId>ClickOnceApplicationDeploymentWrapper</PackageId>
+        <LangVersion>9.0</LangVersion>
         <Authors>RFBomb</Authors>
         <Company>RFBomb Productions</Company>
         <Product>ClickOnceApplicationDeployment</Product>
@@ -53,6 +54,7 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
     </ItemGroup>
     <!-- NetCoreApp3.1 & Net5 Compatibility -->
     <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)'=='net5.0-windows'">
+        <!--
         <ProjectReference Include="..\PureManApplicationDevelopment\PureManApplicationDevelopment\PureManApplicationDeployment.csproj">
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
             <IncludeAssets>PureManApplicationDeployment.dll;PureManApplicationDeployment.xml</IncludeAssets>
@@ -61,6 +63,20 @@ Targets: Net472, Net48, .NetCoreApp3.1, and .Net5
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
             <IncludeAssets>Syroot.KnownFolders.dll;Syroot.KnownFolders.xml</IncludeAssets>
         </ProjectReference>
+        -->
+        <!-- Dependencies for SyRoot.KnownFolders -->
+        <PackageReference Include="System.Security.Principal.Windows" Version="4.0.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitLab" Version="1.1.1" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.1.635-beta">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="SyRoot.KnownFolders\NativeMethods.txt" />
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="SyRoot.KnownFolders\NativeMethods.txt" />
     </ItemGroup>
     <!-- NugetPackage Additions -->
     <ItemGroup>

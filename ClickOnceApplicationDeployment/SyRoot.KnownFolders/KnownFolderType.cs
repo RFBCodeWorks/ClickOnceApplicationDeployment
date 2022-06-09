@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !NETFRAMEWORK
+
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -11,7 +13,7 @@ namespace Syroot.Windows.IO
     /// <remarks>
     /// <para><see href="https://docs.microsoft.com/en-us/windows/win32/shell/knownfolderid">Read more on docs.microsoft.com</see>.</para>
     /// </remarks>
-    public enum KnownFolderType
+    internal enum KnownFolderType
     {
         /// <summary>
         /// The per-user Account Pictures folder. Introduced in Windows 8.
@@ -812,3 +814,5 @@ namespace Syroot.Windows.IO
         internal Guid Guid { get; }
     }
 }
+
+#endif

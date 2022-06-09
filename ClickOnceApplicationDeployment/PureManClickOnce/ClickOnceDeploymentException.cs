@@ -1,4 +1,5 @@
-﻿// ***********************************************************************
+﻿#if !NETFRAMEWORK
+// ***********************************************************************
 // Assembly         : PureManApplicationDeployment
 // Author           : Skif
 // Created          : 02-04-2021
@@ -31,3 +32,4 @@ namespace PureManApplicationDeployment
         }
     }
 }
+#endif

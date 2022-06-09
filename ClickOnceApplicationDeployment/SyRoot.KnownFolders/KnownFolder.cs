@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !NETFRAMEWORK
+
+using System;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using Windows.Win32;
@@ -10,7 +12,7 @@ namespace Syroot.Windows.IO
     /// <summary>
     /// Represents a special Windows directory and provides methods to retrieve information about it.
     /// </summary>
-    public sealed class KnownFolder
+    internal sealed class KnownFolder
     {
         // ---- CONSTRUCTORS & DESTRUCTOR ------------------------------------------------------------------------------
 
@@ -70,14 +72,14 @@ namespace Syroot.Windows.IO
                 Guid guid = Type.GetGuid();
                 Guid riid = typeof(IShellItem).GUID;
                 void* pv;
-                HRESULT hr = PInvoke.SHGetKnownFolderItem(&guid, KNOWN_FOLDER_FLAG.KF_FLAG_DONT_VERIFY,
-                    Identity.AccessToken, &riid, &pv);
+                HRESULT hr = PInvoke.SHGetKnownFolderItem(in guid, KNOWN_FOLDER_FLAG.KF_FLAG_DONT_VERIFY,
+                    Identity.AccessToken, in riid, out pv);
 
                 PWSTR pszName = default;
                 try
                 {
                     hr.ThrowOnFailure();
-                    IShellItem shellItem = (IShellItem)Marshal.GetObjectForIUnknown(new(pv));
+                    IShellItem shellItem = (IShellItem)Marshal.GetObjectForIUnknown(new IntPtr(pv));
 
                     // Get display name from IShellItem instance.
                     shellItem.GetDisplayName(SIGDN.SIGDN_NORMALDISPLAY, &pszName);
@@ -89,7 +91,7 @@ namespace Syroot.Windows.IO
                 }
                 finally
                 {
-                    Marshal.FreeCoTaskMem(new(pszName.Value));
+                    Marshal.FreeCoTaskMem(new IntPtr(pszName.Value));
                 }
             }
         }
@@ -132,7 +134,7 @@ namespace Syroot.Windows.IO
         {
             Guid guid = Type.GetGuid();
             PWSTR pszPath;
-            HRESULT hr = PInvoke.SHGetKnownFolderPath(&guid, (uint)flags, Identity.AccessToken, &pszPath);
+            HRESULT hr = PInvoke.SHGetKnownFolderPath(in guid, (uint)flags, Identity.AccessToken, out pszPath);
             try
             {
                 hr.ThrowOnFailure();
@@ -144,14 +146,14 @@ namespace Syroot.Windows.IO
             }
             finally
             {
-                Marshal.FreeCoTaskMem(new(pszPath.Value));
+                Marshal.FreeCoTaskMem(new IntPtr(pszPath.Value));
             }
         }
 
         private unsafe void SetPath(KNOWN_FOLDER_FLAG flags, string path)
         {
             Guid guid = Type.GetGuid();
-            HRESULT hr = PInvoke.SHSetKnownFolderPath(&guid, (uint)flags, Identity.AccessToken, path);
+            HRESULT hr = PInvoke.SHSetKnownFolderPath(in guid, (uint)flags, Identity.AccessToken, path);
             try
             {
                 hr.ThrowOnFailure();
@@ -163,3 +165,5 @@ namespace Syroot.Windows.IO
         }
     }
 }
+
+#endif
